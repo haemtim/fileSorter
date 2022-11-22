@@ -58,9 +58,9 @@ def sortDownloads(targetDir, destDir, username):
 
 def sortDownloadsWin(targetDir, destDir, username):
     if targetDir == "":
-        targetDir == "C:\\Users\\" + username + "\\Downloads\\"
+        targetDir = "C:\\Users\\" + username + "\\Downloads\\"
     if destDir == "":
-        destDir == "C:\\Users\\" + username + "\\DownloadsSorted\\"
+        destDir = "C:\\Users\\" + username + "\\DownloadsSorted\\"
     print(targetDir + destDir)
     if not os.path.exists(targetDir):
         print("Specified target directory "+ targetDir +" does not exsist! Try again!")
