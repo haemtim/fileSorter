@@ -9,8 +9,7 @@ def main():
         sortDownloads(myInput("Enter absolute target directory (Default: /home/" + username + "/Downloads/) :"), myInput("Enter absolute destination directory (Default: /home/" + username + "/DownloadsSorted/) :"), username)
     elif str(platform.system()) == "Windows":
         username = os.getlogin().strip()
-        sortDownloads(myInput("Enter absolute target directory (Default: C:\\Users\\" + username + "\\Downloads\\) :"), myInput("Enter absolute destination directory (Default: C:\\Users\\" + username + "\\DownloadsSorted\\) :"), username)
-        
+        sortDownloadsWin(myInput("Enter absolute target directory (Default: C:\\Users\\" + username + "\\Downloads\\) :"), myInput("Enter absolute destination directory (Default: C:\\Users\\" + username + "\\DownloadsSorted\\) :"), username) 
     else:
         print("This Script supports UNIX and Windows at the moment!")
         overwriteOS = myInput("If you are certain that the script detected your os wrong, please select:\n0 Unix based system\n1 Windows system\n")
@@ -19,7 +18,7 @@ def main():
             sortDownloads(myInput("Enter absolute target directory (Default: /home/" + username + "/Downloads/) :"), myInput("Enter absolute destination directory (Default: /home/" + username + "/Downloads_Sorted/) :"), username)
         else:
             username = os.getlogin().strip()
-            sortDownloads(myInput("Enter absolute target directory (Default: C:\\Users\\" + username + "\\Downloads\\) :"), myInput("Enter absolute destination directory (Default: C:\\Users\\" + username + "\\DownloadsSorted\\) :"), username)
+            sortDownloadsWin(myInput("Enter absolute target directory (Default: C:\\Users\\" + username + "\\Downloads\\) :"), myInput("Enter absolute destination directory (Default: C:\\Users\\" + username + "\\DownloadsSorted\\) :"), username)
         exit(1)
 
 def sortDownloads(targetDir, destDir, username):
@@ -29,7 +28,7 @@ def sortDownloads(targetDir, destDir, username):
         destDir = destDir + "/home/" + username + "/DownloadsSorted/"
     if not os.path.exists(targetDir):
         print("Specified target directory "+ targetDir +" does not exsist! Try again!")
-        sortDownloads(myInput("Enter absolute target directory (Default: /home/" + username + "/Downloads/) :"), myInput("Enter absolute destination directory (Default: /home/" + username + "/Downloads_Sorted/) :"), username)
+        main()
     if not destDir.endswith("/"):
         destDir = destDir + "/"
     createDir(destDir)
@@ -62,9 +61,10 @@ def sortDownloadsWin(targetDir, destDir, username):
         targetDir == "C:\\Users\\" + username + "\\Downloads\\"
     if destDir == "":
         destDir == "C:\\Users\\" + username + "\\DownloadsSorted\\"
+    print(targetDir + destDir)
     if not os.path.exists(targetDir):
         print("Specified target directory "+ targetDir +" does not exsist! Try again!")
-        sortDownloads(myInput("Enter absolute target directory (Default: C:\\Users\\" + username + "\\Downloads\\) :"), myInput("Enter absolute destination directory (Default: C:\\Users\\" + username + "\\DownloadsSorted\\) :"), username)
+        main()
     if not destDir.endswith("\\"):
         destDir = destDir + "\\"
     createDir(destDir)
